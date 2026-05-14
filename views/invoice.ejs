@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Invoice</title>
+</head>
+
+<body style="
+  margin:0;
+  padding:0;
+  background:#f3f7fb;
+  font-family:Arial,sans-serif;
+">
+
+  <!-- A4 Container -->
+  <div style="
+    width:210mm;
+    min-height:297mm;
+    background:white;
+    margin:auto;
+  ">
+
+    <!-- Header -->
+    <div style="
+      padding:40px;
+      color:black;
+    ">
+
+      <table width="100%">
+        <tr>
+
+          <td>
+            <h1 style="
+              font-size: 30px;
+              font-weight:bold;
+              letter-spacing:2px;
+            ">
+              AURORA
+            </h1>
+
+            <p style="
+              margin-top:10px;
+              line-height:28px;
+            ">
+              Smart Fashion & Lifestyle Store
+            </p>
+          </td>
+
+          <td align="right">
+
+            <h1 style="
+              margin:0;
+              font-size:34px;
+              font-weight:bold;
+            ">
+              INVOICE
+            </h1>
+
+            <div style="
+              margin-top:12px;
+              display:inline-block;
+              background:rgba(255,255,255,0.2);
+              padding:10px 18px;
+              border-radius:30px;
+            ">
+              <%= invoice.invoiceNumber %>
+            </div>
+
+          </td>
+
+        </tr>
+      </table>
+
+    </div>
+
+    <!-- Content -->
+    <div style="padding:40px;">
+
+      <!-- Customer -->
+      <table width="100%" style="margin-bottom:35px;">
+
+        <tr>
+
+          <td width="50%" valign="top">
+
+            <div style="
+              background:#f8fafc;
+              padding:25px;
+              border-radius:20px;
+              border:1px solid #e2e8f0;
+            ">
+
+              <h3 style="
+                margin-top:0;
+                color:#8b5cf6;
+              ">
+                Customer Details
+              </h3>
+
+              <p style="
+                line-height:30px;
+                color:#475569;
+              ">
+                <strong><%= invoice.customerName %></strong><br>
+                <%= invoice.city %><br>
+                <%= invoice.email %>
+              </p>
+
+            </div>
+
+          </td>
+
+          <td width="50%" valign="top">
+
+            <div style="
+              margin-left:20px;
+              background:#f8fafc;
+              padding:25px;
+              border-radius:20px;
+              border:1px solid #e2e8f0;
+            ">
+
+              <h3 style="
+                margin-top:0;
+                color:#ec4899;
+              ">
+                Payment Info
+              </h3>
+
+              <p style="
+                line-height:30px;
+                color:#475569;
+              ">
+                Date: <%= invoice.date %> <br>
+                Payment: <%= invoice.paymentMethod %>
+              </p>
+
+            </div>
+
+          </td>
+
+        </tr>
+
+      </table>
+
+      <!-- Product Table -->
+      <table width="100%" cellspacing="0" cellpadding="0" style="
+        border-collapse:collapse;
+      ">
+
+        <thead>
+
+          <tr style="
+            color:black;
+          ">
+
+            <th style="
+              padding:18px;
+              text-align:left;
+            ">
+              Product
+            </th>
+
+            <th style="
+              padding:18px;
+              text-align:center;
+            ">
+              Qty
+            </th>
+
+            <th style="
+              padding:18px;
+              text-align:right;
+            ">
+              Price
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <% invoice.products.forEach((product)=> { %>
+
+            <tr style="
+              border-bottom:1px solid #e2e8f0;
+            ">
+
+              <td style="padding:20px;">
+                <%= product.name %>
+              </td>
+
+              <td align="center">
+                <%= product.qty %>
+              </td>
+
+              <td align="right" style="
+                padding-right:20px;
+              ">
+                ₹ <%= product.price %>
+              </td>
+
+            </tr>
+
+          <% }) %>
+
+        </tbody>
+
+      </table>
+
+      <!-- Total -->
+      <div style="
+        margin-top:40px;
+        display:flex;
+        justify-content:flex-end;
+      ">
+
+        <div style="
+          width:350px;
+          background:#f8fafc;
+          border-radius:20px;
+          padding:30px;
+          border:1px solid #e2e8f0;
+        ">
+
+          <table width="100%">
+
+            <tr>
+              <td style="
+                padding:10px 0;
+              ">
+                Subtotal
+              </td>
+
+              <td align="right">
+                ₹ <%= invoice.subtotal %>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="
+                padding:10px 0;
+              ">
+                GST
+              </td>
+
+              <td align="right">
+                ₹ <%= invoice.gst %>
+              </td>
+            </tr>
+
+          </table>
+
+          <div style="
+            height:1px;
+            background:#e2e8f0;
+            margin:18px 0;
+          "></div>
+
+          <table width="100%">
+
+            <tr>
+
+              <td style="
+                font-size:22px;
+                font-weight:bold;
+              ">
+                TOTAL
+              </td>
+
+              <td align="right" style="
+                font-size:30px;
+                font-weight:bold;
+                color:#6366f1;
+              ">
+                ₹ <%= invoice.total %>
+              </td>
+
+            </tr>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>
