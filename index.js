@@ -89,7 +89,20 @@ app.get("/generate-pdf", async (req, res) => {
         await browser.close();
 
         // Send PDF
-        res.download(pdfPath);
+        // res.download(pdfPath);
+        res.download(pdfPath, fileName, (err) => {
+          if (err) {
+            console.log("Download Error : ", err);
+          }
+
+          fs.unlink(pdfPath, (unlinkError) => {
+            if (unlinkError) {
+              console.log("Delete Error : ", unlinkError);
+            } else {
+              console.log("PDF file delete sucessfully.");
+            }
+          });
+        });
       },
     );
   } catch (error) {
