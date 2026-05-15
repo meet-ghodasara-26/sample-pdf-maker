@@ -54,7 +54,7 @@ sample-pdf-maker/
 ## 1. Clone Repository
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/meet-ghodasara-26/sample-pdf-maker.git
 ```
 
 ## 2. Navigate to Project Folder
